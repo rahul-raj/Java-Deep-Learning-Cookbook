@@ -2,11 +2,8 @@
 Code for Java Deep Learning Cookbook
 
 
-**
-
 # Table of Contents
 
-**
 
  1. Introduction to Deep Learning in Java
  2. Data Extraction, Transform and Loading
