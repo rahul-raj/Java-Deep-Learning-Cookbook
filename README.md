@@ -2,11 +2,9 @@
 # Java Deep Learning Cookbook
 
 
-**
 
 # Table of Contents
 
-**
 
  1. Introduction to Deep Learning in Java
  2. Data Extraction, Transform and Loading
@@ -25,6 +23,7 @@
 In this chapter, we will discuss about DL4J as a distinct deep learning solution and the significance of Java deep learning library. We will also showcase required deep learning concepts in a recipe-based approach.
 
    1. **Determine the right deep learning library**.
+   
        Choose the right DL library for your use-case.
     2. **Determine the right network type to solve the problem**.
        Choose the right neural network type for your use-case.
