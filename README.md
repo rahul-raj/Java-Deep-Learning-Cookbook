@@ -2,7 +2,11 @@
 Code for Java Deep Learning Cookbook
 
 
-**Table of Contents**
+**
+
+# Table of Contents
+
+**
 
  1. Introduction to Deep Learning in Java
  2. Data Extraction, Transform and Loading
@@ -16,5 +20,3 @@ Code for Java Deep Learning Cookbook
  10. Developing applications in distributed environment
  11. Applying Transfer Learning to network models
  12. Benchmarking and Neural Network Optimization
-
-
