@@ -1,4 +1,4 @@
-My Drive
+
 # Java Deep Learning Cookbook
 
 
