@@ -26,31 +26,31 @@ In this chapter, we will discuss about DL4J as a distinct deep learning solution
    
        Choose the right DL library for your use-case.
        
-    2. **Determine the right network type to solve the problem**.
+   2. **Determine the right network type to solve the problem**.
     
        Choose the right neural network type for your use-case.
        
-    3. **Determine the right activation function**.
+   3. **Determine the right activation function**.
     
        Choose the right activation function for the network layers.
        
-    4. **Combat overfitting problems**.
+   4. **Combat overfitting problems**.
     
        Here we learn how to overcome overfitting problems by a margin.
        
-    5. **Determine the right batch size and learning rates**.
+   5. **Determine the right batch size and learning rates**.
     
         Determine the right batch size and learning rates to train the network.
         
-    6. **Configuring Maven  for  DL4J**.
+   6. **Configuring Maven  for  DL4J**.
     
         Understand the required maven dependencies to run deeplearning4j in your own projects.
         
-    7. **Configuring DL4J for GPU accelerated environment**.
+   7. **Configuring DL4J for GPU accelerated environment**.
     
         Learn how to configure DL4J to run on GPU powered machines.
         
-    8. **Troubleshooting Installation issues**.
+   8. **Troubleshooting Installation issues**.
     
         Discuss most common issues encountered during DL4J installation.
 
@@ -80,7 +80,7 @@ In this chapter, we will discuss about DL4J as a distinct deep learning solution
       
 6. **Normalize data for network efficiency**
 
-       Learn how to normalize data using DataVec.
+      Learn how to normalize data using DataVec.
 
 ## Chapter 3 : Building Deep Neural Networks for Binary Classification
 In this chapter,  we will discuss on how to build deep neural networks for predicting customer retention in an organization. We will also follow step-by-step approach to solve the problem. The focus will be on how to make use of deep learning basics to create a deep neural network for binary classification from scratch.
