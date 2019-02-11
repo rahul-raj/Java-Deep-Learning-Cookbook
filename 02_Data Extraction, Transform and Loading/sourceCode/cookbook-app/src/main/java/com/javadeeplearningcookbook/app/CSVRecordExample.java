@@ -4,15 +4,15 @@ import org.datavec.api.io.WritableConverter;
 import org.datavec.api.io.converters.SelfWritableConverter;
 import org.datavec.api.records.reader.RecordReader;
 import org.datavec.api.records.reader.impl.csv.CSVRecordReader;
+import org.datavec.api.records.reader.impl.transform.TransformProcessRecordReader;
 import org.datavec.api.split.FileSplit;
+import org.datavec.api.transform.TransformProcess;
 import org.datavec.api.transform.schema.Schema;
 import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
-import org.nd4j.linalg.io.ClassPathResource;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.Arrays;
 
 /**
@@ -40,7 +40,15 @@ public class CSVRecordExample
                 .addColumnsInteger("Age","Siblings/Spouses Aboard","Parents/Children Aboard")
                 .addColumnDouble("Fare")
                 .build();
-        DataSetIterator dataSetIterator = new RecordReaderDataSetIterator(recordReader,writableConverter,8,1,7,2,-1,true);
+        TransformProcess transformProcess = new TransformProcess.Builder(schema)
+                                                .removeColumns("Name","Fare")
+                                                .categoricalToInteger("Sex")
+                                                .categoricalToOneHot("Pclass")
+                                                .removeColumns("Pclass[1]")
+                                                .build();
+
+        RecordReader transformProcessRecordReader = new TransformProcessRecordReader(recordReader,transformProcess);
+        DataSetIterator dataSetIterator = new RecordReaderDataSetIterator(transformProcessRecordReader,writableConverter,8,1,7,2,-1,true);
         System.out.println("args = [" + dataSetIterator.totalOutcomes() + "]");
     }
 }
