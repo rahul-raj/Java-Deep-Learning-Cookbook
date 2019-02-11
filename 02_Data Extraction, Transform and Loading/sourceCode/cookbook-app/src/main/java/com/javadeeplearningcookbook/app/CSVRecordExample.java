@@ -30,7 +30,7 @@ public class CSVRecordExample
         File file = new File("titanic.csv");
         RecordReader recordReader = new CSVRecordReader(1,',');
         recordReader.initialize(new FileSplit(file));
-        WritableConverter writableConverter = new SelfWritableConverter();
+        // WritableConverter writableConverter = new SelfWritableConverter();
 
         Schema schema = new Schema.Builder()
                 .addColumnInteger("Survived")
@@ -48,7 +48,10 @@ public class CSVRecordExample
                                                 .build();
 
         RecordReader transformProcessRecordReader = new TransformProcessRecordReader(recordReader,transformProcess);
-        DataSetIterator dataSetIterator = new RecordReaderDataSetIterator(transformProcessRecordReader,writableConverter,8,1,7,2,-1,true);
-        System.out.println("args = [" + dataSetIterator.totalOutcomes() + "]");
+        //DataSetIterator dataSetIterator = new RecordReaderDataSetIterator(transformProcessRecordReader,writableConverter,8,1,7,2,-1,true);
+        DataSetIterator dataSetIterator = new RecordReaderDataSetIterator.Builder(transformProcessRecordReader,batchSize)
+                                              .classification(0,numClasses)
+                                              .build();
+        System.out.println("args = [" + dataSetIterator.totalOutcomes()+ "]");
     }
 }
