@@ -1,7 +1,5 @@
 package com.javadeeplearningcookbook.app;
 
-import org.datavec.api.io.WritableConverter;
-import org.datavec.api.io.converters.SelfWritableConverter;
 import org.datavec.api.records.reader.RecordReader;
 import org.datavec.api.records.reader.impl.csv.CSVRecordReader;
 import org.datavec.api.records.reader.impl.transform.TransformProcessRecordReader;
@@ -52,6 +50,7 @@ public class CSVRecordExample
         DataSetIterator dataSetIterator = new RecordReaderDataSetIterator.Builder(transformProcessRecordReader,batchSize)
                                               .classification(0,numClasses)
                                               .build();
-        System.out.println("args = [" + dataSetIterator.totalOutcomes()+ "]");
+        System.out.println("Total number of possible labels = [" + dataSetIterator.totalOutcomes()+ "]");
+
     }
 }
