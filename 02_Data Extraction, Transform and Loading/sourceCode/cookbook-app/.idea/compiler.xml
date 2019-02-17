@@ -9,8 +9,8 @@
         <module name="cookbook-app" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="cookbook-app" target="1.7" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="cookbook-app" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
