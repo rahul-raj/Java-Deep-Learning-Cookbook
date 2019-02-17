@@ -10,13 +10,12 @@ import java.util.List;
 
 public class TransformSplitExample {
     public static void main(String[] args) throws URISyntaxException {
-/*        TransformSplit.URITransform uriTransform = URI::normalize;
+       TransformSplit.URITransform uriTransform = URI::normalize;
         List<URI> uriList = Arrays.asList(new URI("file://storage/examples/./cats.txt"),
                                           new URI("file://storage/examples//dogs.txt"),
                                           new URI("file://storage/./examples/bear.txt"));
         TransformSplit transformSplit = new TransformSplit(new CollectionInputSplit(uriList),uriTransform);
-        transformSplit.locationsIterator().forEachRemaining(System.out::println);*/
-
+        transformSplit.locationsIterator().forEachRemaining(System.out::println);
 
         //search and replace example
         List<URI> uriReplaceList = Arrays.asList(new URI("file://storage/examples/0/inputs.txt"),
