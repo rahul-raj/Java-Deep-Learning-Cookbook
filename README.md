@@ -2,6 +2,21 @@
 
 # Java Deep Learning Cookbook
 
+# Build
+   ## From IDE (Eclipse, Intellij)
+
+Open as a Maven project and compile.
+
+## [](https://github.expedia.biz/Brand-Expedia/ews-booking-service/#from-command-line)From Command Line
+    mvn clean install
+
+If you face issues with Intellij being not able to detect dependencies or any workspace issues,
+try running the below command:
+
+   
+    mvn idea:idea
+
+Delete ***workspace.xml*** under ***.idea*** directory if problem persists.
 
 
 # Table of Contents
