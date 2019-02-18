@@ -1,4 +1,4 @@
-package com.javadeeplearningcookbook.app;
+package com.javadeeplearningcookbook.app.schematransformexamples;
 
 import org.datavec.api.records.reader.RecordReader;
 import org.datavec.api.records.reader.impl.csv.CSVRecordReader;
