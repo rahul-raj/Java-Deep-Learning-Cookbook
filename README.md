@@ -5,7 +5,7 @@
 # Build
    ## From IDE (Eclipse, Intellij)
 
-Open as a Maven project and compile.
+Navigate to the sourceCode root directory and then Open as a Maven project and compile.
 
 ## [](https://github.expedia.biz/Brand-Expedia/ews-booking-service/#from-command-line)From Command Line
     mvn clean install
