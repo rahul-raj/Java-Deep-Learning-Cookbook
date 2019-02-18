@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
- * Unit test for simple CSVRecordExample.
+ * Unit test for simple CSVRecordReaderExample.
  */
 public class DataVecExampleTest
 {

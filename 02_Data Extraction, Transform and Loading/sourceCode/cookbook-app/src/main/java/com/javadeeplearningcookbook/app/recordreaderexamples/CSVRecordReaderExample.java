@@ -1,4 +1,4 @@
-package com.javadeeplearningcookbook.app.schematransformexamples;
+package com.javadeeplearningcookbook.app.recordreaderexamples;
 
 import org.datavec.api.records.reader.RecordReader;
 import org.datavec.api.records.reader.impl.csv.CSVRecordReader;
@@ -18,7 +18,7 @@ import java.util.Arrays;
  * DataVec Example
  *
  */
-public class CSVRecordExample
+public class CSVRecordReaderExample
 {
     public static void main( String[] args ) throws IOException, InterruptedException {
 
