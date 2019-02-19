@@ -160,6 +160,8 @@
     <orderEntry type="library" name="Maven: net.sf.opencsv:opencsv:2.3" level="project" />
     <orderEntry type="library" name="Maven: com.tdunning:t-digest:3.2" level="project" />
     <orderEntry type="library" name="Maven: it.unimi.dsi:fastutil:6.5.7" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.datavec:datavec-data-codec:1.0.0-beta3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.jcodec:jcodec:0.1.5" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:1.7.25" level="project" />
   </component>
 </module>
