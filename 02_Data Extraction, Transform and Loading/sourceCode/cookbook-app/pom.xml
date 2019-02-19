@@ -47,6 +47,21 @@
       <version>1.0.0-beta3</version>
     </dependency>
     <dependency>
+      <groupId>org.bytedeco.javacpp-presets</groupId>
+      <artifactId>${moduleName}-platform</artifactId>
+      <version>${moduleVersion}-1.4.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.bytedeco</groupId>
+      <artifactId>javacv-platform</artifactId>
+      <version>1.4.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.bytedeco</groupId>
+      <artifactId>javacpp</artifactId>
+      <version>1.4.4</version>
+    </dependency>
+    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <version>1.7.25</version>
