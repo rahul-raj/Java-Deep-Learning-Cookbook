@@ -3,7 +3,7 @@
 # Java Deep Learning Cookbook
 
 # Build
-   ## From IDE (Eclipse, Intellij)
+   ## From Intellij IDE
 
  - Navigate to the sourceCode root directory.
  - Open as a Maven project and compile.
