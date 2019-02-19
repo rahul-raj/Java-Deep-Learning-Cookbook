@@ -15,9 +15,9 @@ import java.util.Arrays;
 
 public class SequenceRecordReaderExample {
     public static void main(String[] args) throws IOException, InterruptedException {
-        SequenceRecordReader trainFeatures = new CSVSequenceRecordReader();
+        SequenceRecordReader trainFeatures = new CSVSequenceRecordReader(1);
         trainFeatures.initialize(new NumberedFileInputSplit(new File("D:/storage/features/%d.csv").getPath(),1,4));
-        SequenceRecordReader trainLabels = new CSVSequenceRecordReader();
+        SequenceRecordReader trainLabels = new CSVSequenceRecordReader(1);
         trainLabels.initialize(new NumberedFileInputSplit(new File("D:/storage/labels/%d.csv").getPath(),1,4));
 
         Schema featureSchema = new Schema.Builder()
@@ -43,7 +43,7 @@ public class SequenceRecordReaderExample {
                            .build();
         TransformProcessSequenceRecordReader labelRecordReader = new TransformProcessSequenceRecordReader(trainLabels,labelTransformProcess);
 
-        DataSetIterator trainIterator = new SequenceRecordReaderDataSetIterator(featureRecordReader,labelRecordReader,10,2,true, SequenceRecordReaderDataSetIterator.AlignmentMode.ALIGN_END);
+        DataSetIterator trainIterator = new SequenceRecordReaderDataSetIterator(featureRecordReader,labelRecordReader,10,2,false, SequenceRecordReaderDataSetIterator.AlignmentMode.ALIGN_END);
         System.out.println(trainIterator.inputColumns());
 
     }
