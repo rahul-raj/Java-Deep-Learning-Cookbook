@@ -45,7 +45,6 @@
       <groupId>org.datavec</groupId>
       <artifactId>datavec-data-codec</artifactId>
       <version>1.0.0-beta3</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
