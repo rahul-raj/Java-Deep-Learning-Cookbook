@@ -14,6 +14,11 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class SequenceRecordReaderExample {
+
+    /*
+    * Download dataset -> https://drive.google.com/file/d/1T5Y5GOx9mui7h4U_nBO7k1rpI1K4Mclg/view?usp=sharing
+    *
+    * */
     public static void main(String[] args) throws IOException, InterruptedException {
         SequenceRecordReader trainFeatures = new CSVSequenceRecordReader(1);
         trainFeatures.initialize(new NumberedFileInputSplit(new File("D:/storage/features/%d.csv").getPath(),1,4));
