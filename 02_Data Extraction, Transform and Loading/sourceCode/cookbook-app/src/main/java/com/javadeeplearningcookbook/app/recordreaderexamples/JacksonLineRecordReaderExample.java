@@ -20,13 +20,14 @@ public class JacksonLineRecordReaderExample {
                                   .addField("sepalWidth")
                                   .addField("petalLength")
                                   .addField("petalWidth")
+                                  .addField("species")
                                   .build();
         JacksonLineRecordReader jacksonLineRecordReader = new JacksonLineRecordReader(fieldSelection,new ObjectMapper(new JsonFactory()));
         Configuration configuration = new Configuration();
         configuration.set(JacksonLineRecordReader.LABELS,"species");
-        jacksonLineRecordReader.setConf(configuration);
         jacksonLineRecordReader.initialize(new FileSplit(new File("D:/storage/irisdata.txt")));
-        DataSetIterator dataSetIterator = new RecordReaderDataSetIterator(jacksonLineRecordReader,5);
+        System.out.println(jacksonLineRecordReader.next());
+        DataSetIterator dataSetIterator = new RecordReaderDataSetIterator(jacksonLineRecordReader,5,-1,3);
         System.out.println(dataSetIterator.totalOutcomes());
 
 
