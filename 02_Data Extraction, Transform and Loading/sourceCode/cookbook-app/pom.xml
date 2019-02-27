@@ -66,6 +66,12 @@
       <artifactId>slf4j-simple</artifactId>
       <version>1.7.25</version>
     </dependency>
+    <!--  You need the below dependency to use LocalTransformExecutor-->
+    <dependency>
+      <groupId>org.datavec</groupId>
+      <artifactId>datavec-local</artifactId>
+      <version>1.0.0-beta3</version>
+    </dependency>
   </dependencies>
 
   <build>
