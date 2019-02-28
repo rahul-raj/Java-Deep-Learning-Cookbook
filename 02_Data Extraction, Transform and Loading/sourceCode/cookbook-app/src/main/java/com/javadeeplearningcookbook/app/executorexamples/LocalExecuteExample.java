@@ -55,5 +55,6 @@ public class LocalExecuteExample {
         }
         List<List<Writable>> transformedOutput=LocalTransformExecutor.execute(outputData,transformProcess);
         recordWriter.writeBatch(transformedOutput);
+        recordWriter.close();
     }
 }
