@@ -46,11 +46,11 @@
             <artifactId>datavec-data-codec</artifactId>
             <version>1.0.0-beta3</version>
         </dependency>
-        <dependency>
+ <!--       <dependency>
             <groupId>org.bytedeco.javacpp-presets</groupId>
             <artifactId>${moduleName}-platform</artifactId>
             <version>${moduleVersion}-1.4.4</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.bytedeco</groupId>
             <artifactId>javacv-platform</artifactId>
