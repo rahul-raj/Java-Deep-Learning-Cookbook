@@ -6,6 +6,7 @@ import org.datavec.api.records.reader.impl.transform.TransformProcessRecordReade
 import org.datavec.api.split.FileSplit;
 import org.datavec.api.transform.TransformProcess;
 import org.datavec.api.transform.schema.Schema;
+import org.datavec.api.util.ndarray.RecordConverter;
 import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
 import org.deeplearning4j.datasets.iterator.DataSetIteratorSplitter;
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
@@ -15,6 +16,7 @@ import org.deeplearning4j.nn.conf.layers.OutputLayer;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.nn.weights.WeightInit;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
+import org.deeplearning4j.util.ModelSerializer;
 import org.nd4j.evaluation.classification.Evaluation;
 import org.nd4j.linalg.activations.Activation;
 import org.nd4j.linalg.api.ndarray.INDArray;
@@ -73,6 +75,17 @@ public class CustomerRetentionPredictionExample {
         return transformProcessRecordReader;
     }
 
+    private static INDArray generateOutput(File file) throws IOException, InterruptedException {
+        final File modelFile = new File("model.zip");
+        final MultiLayerNetwork network = ModelSerializer.restoreMultiLayerNetwork(modelFile);
+        final RecordReader recordReader = generateReader(file);
+        final INDArray array = RecordConverter.toArray(recordReader.next());
+        final NormalizerStandardize normalizerStandardize = ModelSerializer.restoreNormalizerFromFile(modelFile);
+        normalizerStandardize.transform(array);
+        return network.output(array,false);
+
+    }
+
     public static void main(String[] args) throws IOException, InterruptedException {
 
        final int labelIndex=11;
@@ -108,5 +121,12 @@ public class CustomerRetentionPredictionExample {
 
         Evaluation evaluation =  multiLayerNetwork.evaluate(dataSetIteratorSplitter.getTestIterator(),Arrays.asList("0","1"));
         System.out.println(evaluation.stats());
+
+        File file = new File("model.zip");
+        ModelSerializer.writeModel(multiLayerNetwork,file,true);
+        ModelSerializer.addNormalizerToModel(file,dataNormalization);
+
+        //INDArray output = generateOutput(new File("test.csv"));
+
     }
 }
