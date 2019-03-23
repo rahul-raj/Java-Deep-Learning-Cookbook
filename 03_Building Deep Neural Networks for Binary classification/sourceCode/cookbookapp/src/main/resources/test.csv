@@ -1,0 +1,5 @@
+RowNumber,CustomerId,Surname,CreditScore,Geography,Gender,Age,Tenure,Balance,NumOfProducts,HasCrCard,IsActiveMember,EstimatedSalary
+3,15619304,Onio,502,France,Female,42,8,159660.8,3,1,0,113931.57
+13,15632264,Kay,476,France,Female,34,10,0,2,1,0,26260.98
+14,15691483,Chin,549,France,Female,25,5,0,2,0,0,190857.79
+15,15600882,Scott,635,Spain,Female,35,7,0,2,1,1,65951.65
