@@ -104,7 +104,7 @@ public class AnimalClassifier {
                         .stride(1,1)
                         .activation(Activation.RELU)
                         .build())
-                .layer(1, new LocalResponseNormalization.Builder().name("lrn2").build())
+                .layer(2, new LocalResponseNormalization.Builder().name("lrn2").build())
                 .layer(new SubsamplingLayer.Builder(PoolingType.MAX)
                         .kernelSize(3,3)
                         .build())
