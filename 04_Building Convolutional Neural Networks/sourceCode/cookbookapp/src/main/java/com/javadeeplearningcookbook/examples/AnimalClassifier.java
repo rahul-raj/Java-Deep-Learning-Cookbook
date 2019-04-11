@@ -11,14 +11,18 @@ import org.datavec.image.transform.ImageTransform;
 import org.datavec.image.transform.PipelineImageTransform;
 import org.datavec.image.transform.WarpImageTransform;
 import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
-import org.deeplearning4j.earlystopping.scorecalc.ClassificationScoreCalculator;
 import org.deeplearning4j.nn.conf.BackpropType;
 import org.deeplearning4j.nn.conf.GradientNormalization;
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
 import org.deeplearning4j.nn.conf.distribution.NormalDistribution;
 import org.deeplearning4j.nn.conf.inputs.InputType;
-import org.deeplearning4j.nn.conf.layers.*;
+import org.deeplearning4j.nn.conf.layers.ConvolutionLayer;
+import org.deeplearning4j.nn.conf.layers.DenseLayer;
+import org.deeplearning4j.nn.conf.layers.LocalResponseNormalization;
+import org.deeplearning4j.nn.conf.layers.OutputLayer;
+import org.deeplearning4j.nn.conf.layers.PoolingType;
+import org.deeplearning4j.nn.conf.layers.SubsamplingLayer;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.nn.weights.WeightInit;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
@@ -163,7 +167,9 @@ public class AnimalClassifier {
         Evaluation evaluation = model.evaluate(dataSetIterator);
         System.out.println("args = [" + evaluation.stats() + "]");
 
-        ModelSerializer.writeModel(model,new File("cnntrainedmodel.zip"),true);
+        File modelFile = new File("cnntrainedmodel.zip");
+        ModelSerializer.writeModel(model,modelFile,true);
+        ModelSerializer.addNormalizerToModel(modelFile,scaler);
 
 
 
