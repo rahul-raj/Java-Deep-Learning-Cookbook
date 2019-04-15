@@ -1,0 +1,10 @@
+.idea
+target
+cookbook-app.iml
+cookbook-app.iws
+cookbook-app.ipr
+cookbookapp.iml
+cookbookapp-nlp.iml
+dependency-reduced-pom.xml
+model.zip
+LocalExecuteExample.csv
