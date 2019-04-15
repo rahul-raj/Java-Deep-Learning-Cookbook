@@ -6,13 +6,15 @@ import org.deeplearning4j.text.sentenceiterator.SentenceIterator;
 import org.deeplearning4j.text.tokenization.tokenizer.preprocessor.EndingPreProcessor;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.DefaultTokenizerFactory;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.TokenizerFactory;
+import org.deeplearning4j.ui.api.UIServer;
+import org.deeplearning4j.ui.stats.StatsListener;
+import org.deeplearning4j.ui.storage.InMemoryStatsStorage;
 import org.nd4j.linalg.io.ClassPathResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
 
 public class Word2VecModelExample {
     private static Logger log = LoggerFactory.getLogger(Word2VecModelExample.class);
@@ -37,6 +39,7 @@ public class Word2VecModelExample {
         for(String word: words){
             System.out.println(word+ " ");
         }
-
+        double cosSimilarity = model.similarity("season","program");
+        System.out.println(cosSimilarity);
     }
 }
