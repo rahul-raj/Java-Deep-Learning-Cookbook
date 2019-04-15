@@ -7,6 +7,7 @@ import org.datavec.api.split.FileSplit;
 import org.datavec.api.transform.TransformProcess;
 import org.datavec.api.transform.schema.Schema;
 import org.datavec.api.util.ndarray.RecordConverter;
+import org.deeplearning4j.api.storage.StatsStorage;
 import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
 import org.deeplearning4j.datasets.iterator.DataSetIteratorSplitter;
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
@@ -16,6 +17,10 @@ import org.deeplearning4j.nn.conf.layers.OutputLayer;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.nn.weights.WeightInit;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
+import org.deeplearning4j.ui.api.UIServer;
+import org.deeplearning4j.ui.stats.StatsListener;
+import org.deeplearning4j.ui.storage.FileStatsStorage;
+import org.deeplearning4j.ui.storage.InMemoryStatsStorage;
 import org.deeplearning4j.util.ModelSerializer;
 import org.nd4j.evaluation.classification.Evaluation;
 import org.nd4j.linalg.activations.Activation;
@@ -114,9 +119,14 @@ public class CustomerRetentionPredictionExample {
                                                                     .layer(new OutputLayer.Builder(new LossMCXENT(weightsArray)).nIn(4).nOut(2).activation(Activation.SOFTMAX).build())
                                                                     .build();
 
+        UIServer uiServer = UIServer.getInstance();
+        StatsStorage statsStorage = new InMemoryStatsStorage();
+
         MultiLayerNetwork multiLayerNetwork = new MultiLayerNetwork(configuration);
         multiLayerNetwork.init();
-        multiLayerNetwork.setListeners(new ScoreIterationListener(100));
+        multiLayerNetwork.setListeners(new ScoreIterationListener(100),
+                                       new StatsListener(statsStorage));
+        uiServer.attach(statsStorage);
         multiLayerNetwork.fit(dataSetIteratorSplitter.getTrainIterator(),100);
 
         Evaluation evaluation =  multiLayerNetwork.evaluate(dataSetIteratorSplitter.getTestIterator(),Arrays.asList("0","1"));
