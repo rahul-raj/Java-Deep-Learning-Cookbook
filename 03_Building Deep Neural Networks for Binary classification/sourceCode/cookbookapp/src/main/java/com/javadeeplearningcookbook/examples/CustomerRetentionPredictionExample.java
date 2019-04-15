@@ -19,7 +19,6 @@ import org.deeplearning4j.nn.weights.WeightInit;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.deeplearning4j.ui.api.UIServer;
 import org.deeplearning4j.ui.stats.StatsListener;
-import org.deeplearning4j.ui.storage.FileStatsStorage;
 import org.deeplearning4j.ui.storage.InMemoryStatsStorage;
 import org.deeplearning4j.util.ModelSerializer;
 import org.nd4j.evaluation.classification.Evaluation;
@@ -109,7 +108,7 @@ public class CustomerRetentionPredictionExample {
 
        log.info("Building Model------------------->>>>>>>>>");
 
-        MultiLayerConfiguration configuration = new NeuralNetConfiguration.Builder()
+        final MultiLayerConfiguration configuration = new NeuralNetConfiguration.Builder()
                                                                     .weightInit(WeightInit.RELU_UNIFORM)
                                                                     .updater(new Adam(0.015D))
                                                                     .list()
@@ -119,20 +118,20 @@ public class CustomerRetentionPredictionExample {
                                                                     .layer(new OutputLayer.Builder(new LossMCXENT(weightsArray)).nIn(4).nOut(2).activation(Activation.SOFTMAX).build())
                                                                     .build();
 
-        UIServer uiServer = UIServer.getInstance();
-        StatsStorage statsStorage = new InMemoryStatsStorage();
+        final UIServer uiServer = UIServer.getInstance();
+        final StatsStorage statsStorage = new InMemoryStatsStorage();
 
-        MultiLayerNetwork multiLayerNetwork = new MultiLayerNetwork(configuration);
+        final MultiLayerNetwork multiLayerNetwork = new MultiLayerNetwork(configuration);
         multiLayerNetwork.init();
         multiLayerNetwork.setListeners(new ScoreIterationListener(100),
                                        new StatsListener(statsStorage));
         uiServer.attach(statsStorage);
         multiLayerNetwork.fit(dataSetIteratorSplitter.getTrainIterator(),100);
 
-        Evaluation evaluation =  multiLayerNetwork.evaluate(dataSetIteratorSplitter.getTestIterator(),Arrays.asList("0","1"));
+        final Evaluation evaluation =  multiLayerNetwork.evaluate(dataSetIteratorSplitter.getTestIterator(),Arrays.asList("0","1"));
         System.out.println(evaluation.stats());
 
-        File file = new File("model.zip");
+        final File file = new File("model.zip");
         ModelSerializer.writeModel(multiLayerNetwork,file,true);
         ModelSerializer.addNormalizerToModel(file,dataNormalization);
 

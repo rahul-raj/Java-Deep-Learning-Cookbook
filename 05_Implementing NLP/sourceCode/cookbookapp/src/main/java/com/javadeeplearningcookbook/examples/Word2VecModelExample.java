@@ -16,12 +16,12 @@ import java.util.Collection;
 public class Word2VecModelExample {
     private static Logger log = LoggerFactory.getLogger(Word2VecModelExample.class);
     public static void main(String[] args) throws IOException {
-        SentenceIterator iterator = new LineSentenceIterator(new ClassPathResource("raw_sentences_large.txt").getFile());
+        final SentenceIterator iterator = new LineSentenceIterator(new ClassPathResource("raw_sentences_large.txt").getFile());
         SentenceDataPreProcessor.setPreprocessor(iterator);
-        TokenizerFactory tokenizerFactory = new DefaultTokenizerFactory();
+        final TokenizerFactory tokenizerFactory = new DefaultTokenizerFactory();
         tokenizerFactory.setTokenPreProcessor(new EndingPreProcessor());
 
-        Word2Vec model = new Word2Vec.Builder()
+        final Word2Vec model = new Word2Vec.Builder()
                                         .iterate(iterator)
                                         .tokenizerFactory(tokenizerFactory)
                                         .minWordFrequency(5)
@@ -32,11 +32,11 @@ public class Word2VecModelExample {
         log.info("Fitting Word2Vec model....");
         model.fit();
 
-        Collection<String> words = model.wordsNearest("season",10);
-        for(String word: words){
+        final Collection<String> words = model.wordsNearest("season",10);
+        for(final String word: words){
             System.out.println(word+ " ");
         }
-        double cosSimilarity = model.similarity("season","program");
+        final double cosSimilarity = model.similarity("season","program");
         System.out.println(cosSimilarity);
     }
 }
