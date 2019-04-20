@@ -29,6 +29,7 @@ public class Word2VecModelExample {
                                         .minWordFrequency(5)
                                         .layerSize(100)
                                         .seed(42)
+                                        .epochs(50)
                                         .windowSize(5)
                                         .build();
         log.info("Fitting Word2Vec model....");
