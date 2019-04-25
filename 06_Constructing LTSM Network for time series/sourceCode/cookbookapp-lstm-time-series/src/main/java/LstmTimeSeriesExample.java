@@ -74,6 +74,7 @@ public class LstmTimeSeriesExample {
             INDArray[] output = model.output(batch.getFeatures());
             evaluation.evalTimeSeries(batch.getLabels(), output[0]);
         }
-
+        
+        System.out.println(evaluation.calculateAUC());
     }
 }
