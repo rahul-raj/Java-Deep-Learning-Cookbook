@@ -19,7 +19,7 @@ import org.nd4j.linalg.lossfunctions.LossFunctions;
 
 import java.io.IOException;
 
-//Download dataset from https://skymindacademy.blob.core.windows.net/physionet2012/physionet2012.tar.gz 
+//Download dataset from https://skymindacademy.blob.core.windows.net/physionet2012/physionet2012.tar.gz
 public class LstmTimeSeriesExample {
     private static final String FEATURE_DIR = "C:\\Users\\Admin\\Downloads\\physionet2012\\physionet2012\\sequence";
     private static final String LABEL_DIR = "C:\\Users\\Admin\\Downloads\\physionet2012\\physionet2012\\mortality";
@@ -32,7 +32,7 @@ public class LstmTimeSeriesExample {
         DataSetIterator trainDataSetIterator = new SequenceRecordReaderDataSetIterator(trainFeaturesReader,trainLabelsReader,100,2,false, SequenceRecordReaderDataSetIterator.AlignmentMode.ALIGN_END);
 
         SequenceRecordReader testFeaturesReader = new CSVSequenceRecordReader(1, ",");
-        testFeaturesReader.initialize(new NumberedFileInputSplit(FEATURE_DIR+"/%d.csv",100,3999));
+        testFeaturesReader.initialize(new NumberedFileInputSplit(FEATURE_DIR+"/%d.csv",3200,3999));
         SequenceRecordReader testLabelsReader = new CSVSequenceRecordReader();
         testLabelsReader.initialize(new NumberedFileInputSplit(LABEL_DIR+"/%d.csv",3200,3999));
         DataSetIterator testDataSetIterator = new SequenceRecordReaderDataSetIterator(testFeaturesReader,testLabelsReader,100,2,false, SequenceRecordReaderDataSetIterator.AlignmentMode.ALIGN_END);
