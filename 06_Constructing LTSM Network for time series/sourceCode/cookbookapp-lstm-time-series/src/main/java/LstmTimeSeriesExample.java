@@ -14,6 +14,7 @@ import org.nd4j.linalg.activations.Activation;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.DataSet;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
+import org.nd4j.linalg.dataset.api.preprocessor.NormalizerStandardize;
 import org.nd4j.linalg.learning.config.Adam;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
 
@@ -26,9 +27,9 @@ public class LstmTimeSeriesExample {
     private static final int RANDOM_SEED = 1234;
     public static void main(String[] args) throws IOException, InterruptedException {
         SequenceRecordReader trainFeaturesReader = new CSVSequenceRecordReader(1, ",");
-        trainFeaturesReader.initialize(new NumberedFileInputSplit(FEATURE_DIR+"/%d.csv",0,3999));
+        trainFeaturesReader.initialize(new NumberedFileInputSplit(FEATURE_DIR+"/%d.csv",0,3199));
         SequenceRecordReader trainLabelsReader = new CSVSequenceRecordReader();
-        trainLabelsReader.initialize(new NumberedFileInputSplit(LABEL_DIR+"/%d.csv",0,3999));
+        trainLabelsReader.initialize(new NumberedFileInputSplit(LABEL_DIR+"/%d.csv",0,3199));
         DataSetIterator trainDataSetIterator = new SequenceRecordReaderDataSetIterator(trainFeaturesReader,trainLabelsReader,100,2,false, SequenceRecordReaderDataSetIterator.AlignmentMode.ALIGN_END);
 
         SequenceRecordReader testFeaturesReader = new CSVSequenceRecordReader(1, ",");
@@ -71,5 +72,6 @@ public class LstmTimeSeriesExample {
         }
         
         System.out.println(evaluation.calculateAUC());
+        System.out.println(evaluation.stats());
     }
 }
