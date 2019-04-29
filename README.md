@@ -3,6 +3,13 @@
 # Java Deep Learning Cookbook
 
 # Build
+
+Each chapter will have separate source folder where all examples are stored for the particular chapter. For example, if you want to import the code for chapter 2, navigate to the chapter directory first and then import the directory **sourceCode/cookbook-app** in your IDE. You should also see pom.xml located there.
+
+[![image](image "image")](https://user-images.githubusercontent.com/517415/56918244-20ab7380-6adb-11e9-95b9-b27e3550d985.png "image")
+
+
+  
    ## From Intellij IDE
 
  - Navigate to the sourceCode root directory.
