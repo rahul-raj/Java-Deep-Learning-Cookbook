@@ -35,40 +35,27 @@ import java.util.Random;
 public class UciSequenceClassificationExample {
 
     //Replace with your file system location where you want to store feature/labels from data after extraction.
-    static String trainfeatureDir = "C:/Users/Admin/Java-Deep-Learning-Cookbook/" +
-            "07_Constructing LTSM Neural network for sequence classification/" +
-            "sourceCode/cookbookapp/src/main/resources/train/features/";
-    static String trainlabelDir = "C:/Users/Admin/Java-Deep-Learning-Cookbook/" +
-            "07_Constructing LTSM Neural network for sequence classification/" +
-            "sourceCode/cookbookapp/src/main/resources/train/labels/";
-    static String testlabelDir = "C:/Users/Admin/Java-Deep-Learning-Cookbook/" +
-            "07_Constructing LTSM Neural network for sequence classification/sourceCode/" +
-            "cookbookapp/src/main/resources/test/labels/";
-    static String testfeatureDir = "C:/Users/Admin/Java-Deep-Learning-Cookbook/" +
-            "07_Constructing LTSM Neural network for sequence classification/" +
-            "sourceCode/cookbookapp/src/main/resources/test/features/";
+    static String trainfeatureDir = "D:/train/features/";
+    static String trainlabelDir = "D:/train/labels/";
+    static String testlabelDir = "D:/test/labels/";
+    static String testfeatureDir = "D:/test/features/";
 
 
     private static Logger log = LoggerFactory.getLogger(UciSequenceClassificationExample.class);
 
     public static void main(String[] args) throws Exception {
 
-        trainfeatureDir = trainfeatureDir.replaceAll(" ","%20");
-        trainlabelDir = trainlabelDir.replaceAll(" ","%20");
-        testlabelDir = testlabelDir.replaceAll(" ","%20");
-        testfeatureDir = testfeatureDir.replaceAll(" ","%20");
-
         downloadUCIData();
 
         SequenceRecordReader trainFeaturesSequenceReader = new CSVSequenceRecordReader();
-        trainFeaturesSequenceReader.initialize(new NumberedFileInputSplit(trainfeatureDir+"%d.csv",0,449));
+        trainFeaturesSequenceReader.initialize(new NumberedFileInputSplit(new File(trainfeatureDir).getAbsolutePath()+"/%d.csv",0,449));
         SequenceRecordReader trainLabelsSequenceReader = new CSVSequenceRecordReader();
-        trainLabelsSequenceReader.initialize(new NumberedFileInputSplit(trainlabelDir+"%d.csv",0,449));
+        trainLabelsSequenceReader.initialize(new NumberedFileInputSplit(new File(trainlabelDir).getAbsolutePath()+"/%d.csv",0,449));
 
         SequenceRecordReader testFeaturesSequenceReader = new CSVSequenceRecordReader();
-        testFeaturesSequenceReader.initialize(new NumberedFileInputSplit(testfeatureDir+"%d.csv",0,149));
+        testFeaturesSequenceReader.initialize(new NumberedFileInputSplit(new File(testfeatureDir).getAbsolutePath()+"/%d.csv",0,149));
         SequenceRecordReader testLabelsSequenceReader = new CSVSequenceRecordReader();
-        testLabelsSequenceReader.initialize(new NumberedFileInputSplit(testlabelDir+"%d.csv",0,149));
+        testLabelsSequenceReader.initialize(new NumberedFileInputSplit(new File(testlabelDir).getAbsolutePath()+"/%d.csv",0,149));
 
         int batchSize = 10;
         int numOfClasses = 6;
@@ -88,9 +75,11 @@ public class UciSequenceClassificationExample {
                                                     .gradientNormalization(GradientNormalization.ClipElementWiseAbsoluteValue)
                                                     .gradientNormalizationThreshold(0.5)
                                                     .graphBuilder()
-                                                    .addLayer("LSTM layer",new LSTM.Builder().activation(Activation.TANH).nIn(1).nOut(10).build())
-                                                    .addLayer("Output Layer",new RnnOutputLayer.Builder(LossFunctions.LossFunction.MCXENT)
-                                                    .activation(Activation. SOFTMAX).nIn(10).nOut(numOfClasses).build())
+                                                    .addInputs("trainFeatures")
+                                                    .setOutputs("predictSequence")
+                                                    .addLayer("L1",new LSTM.Builder().activation(Activation.TANH).nIn(1).nOut(10).build(),"trainFeatures")
+                                                    .addLayer("predictSequence",new RnnOutputLayer.Builder(LossFunctions.LossFunction.MCXENT)
+                                                                                                            .activation(Activation. SOFTMAX).nIn(10).nOut(numOfClasses).build(),"L1")
                                                     .build();
         ComputationGraph model = new ComputationGraph(configuration);
         model.init();
