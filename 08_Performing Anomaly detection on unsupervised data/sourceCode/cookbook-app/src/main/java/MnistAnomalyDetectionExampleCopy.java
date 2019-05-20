@@ -59,8 +59,8 @@ public class MnistAnomalyDetectionExampleCopy {
             for(int i=0;i<testSample.numExamples();i++) {
                DataSet data = testSample.get(i);
                INDArray features = data.getFeatures();
-               INDArray labels = data.getLabels();
-               Double score = model.score(new DataSet(features,labels));
+               int label = (int)data.getLabels().getDouble(i);
+               Double score = model.score(new DataSet(features,features));
             }
 
 
