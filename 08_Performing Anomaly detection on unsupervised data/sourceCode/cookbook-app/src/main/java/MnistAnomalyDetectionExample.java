@@ -10,20 +10,23 @@ import org.nd4j.linalg.activations.Activation;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.DataSet;
 import org.nd4j.linalg.dataset.SplitTestAndTrain;
-
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.learning.config.AdaGrad;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
-import org.nd4j.linalg.primitives.ImmutablePair;
 import org.nd4j.linalg.primitives.Pair;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 public class MnistAnomalyDetectionExample {
     public static void main(String[] args) throws IOException {
@@ -88,12 +91,12 @@ public class MnistAnomalyDetectionExample {
             INDArray labels = labelsTest.get(i);
             int nRows = testData.rows();
             for( int j=0; j<nRows; j++){
-                INDArray example = testData.getRow(j);
+                INDArray example = testData.getRow(j, true);
                 int digit = (int)labels.getDouble(j);
                 double score = net.score(new DataSet(example,example));
                 // Add (score, example) pair to the appropriate list
-                //List digitAllPairs = listsByDigit.get(digit);
-               // digitAllPairs.add(new ImmutablePair<>(score, example));
+                List digitAllPairs = listsByDigit.get(digit);
+                digitAllPairs.add(new Pair<>(score, example));
             }
         }
 
