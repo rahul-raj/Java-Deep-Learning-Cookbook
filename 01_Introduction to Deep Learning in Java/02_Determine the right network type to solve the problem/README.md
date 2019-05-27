@@ -1,5 +1,5 @@
 
-Although there are multiple ways to perform a single task, here are the few of the commonly used network architectures:
+Although there are multiple ways to perform a single task, here are few of the commonly used network architectures:
 
 | Problem  | Core Architecture |
 |--|--|
