@@ -1,6 +1,6 @@
 
 
-![Java deep learning cookbook](https://user-images.githubusercontent.com/517415/58750097-89578880-84ab-11e9-8863-ba65a6677374.png)
+![Java deep learning cookbook](https://user-images.githubusercontent.com/517415/58750097-89578880-84ab-11e9-8863-ba65a6677374.png) []()
 
 # Java Deep Learning Cookbook
 
