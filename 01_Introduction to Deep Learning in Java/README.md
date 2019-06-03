@@ -1,5 +1,6 @@
-
 ## Chapter 1 : Introduction to Deep Learning in Java
+
+We will discuss about DL4J as a distinct deep learning solution and the significance of Java deep learning library. We will also showcase required deep learning concepts in a recipe-based approach.
 
 In this chapter, we have the following recipes:
 
