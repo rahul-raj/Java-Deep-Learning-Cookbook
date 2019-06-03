@@ -11,4 +11,4 @@ Although there are multiple ways to perform a single task, here are few of the c
 
 Note that, the optimal architectural decision can vary upon the type of data dealt with and whether it is supervised/unsupervised. 
 
-For prediction problems with simple CSV data, MLP(Multilayer perceptron) would be just enough and will give best results compared to other complex architectures. 
+For prediction problems with simple CSV data (non-sequential), MLP(Multilayer perceptron) would be just enough and will give best results compared to other complex architectures. 
