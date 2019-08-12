@@ -5,6 +5,7 @@ import com.beust.jcommander.Parameter;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.launcher.SparkLauncher;
 import org.datavec.api.io.labels.ParentPathLabelGenerator;
 import org.datavec.api.io.labels.PathLabelGenerator;
 import org.datavec.image.recordreader.ImageRecordReader;
@@ -53,6 +54,9 @@ public class SparkExample {
     private String dataPath;
 
 
+    @Parameter(names = {"--masterIP"}, description = "Master node IP Address", required = true)
+    private String masterIP;
+
     public static void main(String[] args) throws Exception {
 
        new SparkExample().entryPoint(args);
@@ -68,10 +72,14 @@ public class SparkExample {
         SparkConf conf = new SparkConf();
         conf.setMaster("local[*]");
         conf.setAppName("DL4J Spark Imagenet Classifier");
+        conf.set("spark.locality.wait","0");
+        conf.set("spark.executor.extraJavaOptions","-Dorg.bytedeco.javacpp.maxbytes=6G -Dorg.bytedeco.javacpp.maxphysicalbytes=6G");
+        conf.set(SparkLauncher.DRIVER_EXTRA_JAVA_OPTIONS,"-Dorg.bytedeco.javacpp.maxbytes=6G -Dorg.bytedeco.javacpp.maxphysicalbytes=6G");
         JavaSparkContext context = new JavaSparkContext(conf);
 
 
         VoidConfiguration voidConfiguration = VoidConfiguration.builder()
+                .controllerAddress(masterIP)
                 .unicastPort(40123)                          // Port number that should be open for IN/OUT communications on all Spark nodes
                 /*  .networkMask("192.168.0.0/16")                   // Local network mask
                 .controllerAddress("192.168.0.139")                // IP address of the master/driver node
