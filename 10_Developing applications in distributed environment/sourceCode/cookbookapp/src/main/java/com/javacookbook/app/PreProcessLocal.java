@@ -14,7 +14,7 @@ import java.io.File;
   You would need to manually transfer them to HDFS.
  */
 public class PreProcessLocal {
-    //Replace
+    //The directory in which you would like to save your batches.
     private String localSaveDir = "D:/Application/imagenet-preprocessed/";
 
     @Parameter(names = {"--batchSize"}, description = "Batch size for saving the data", required = false)
