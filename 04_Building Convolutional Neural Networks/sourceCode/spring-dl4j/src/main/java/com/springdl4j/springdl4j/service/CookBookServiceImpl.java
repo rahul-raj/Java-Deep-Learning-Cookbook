@@ -18,7 +18,7 @@ public class CookBookServiceImpl implements CookBookService {
         final List<String> results = new ArrayList<>();
         File convFile = File.createTempFile(multipartFile.getOriginalFilename(),null, new File(System.getProperty("user.dir")+"/"));
         multipartFile.transferTo(convFile);
-        INDArray indArray = CustomerRetentionPredictionApi.generateOutput(convFile);
+        INDArray indArray = AnimalClassifierAPI.generateOutput(convFile);
         for(int i=0; i<indArray.rows();i++){
             if(indArray.getDouble(i,0)>indArray.getDouble(i,1)){
                 results.add("Customer "+(i+1)+"-> Happy Customer \n");
