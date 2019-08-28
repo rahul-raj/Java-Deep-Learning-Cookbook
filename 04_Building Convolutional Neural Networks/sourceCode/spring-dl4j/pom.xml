@@ -29,7 +29,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.javadeeplearningcookbook.app</groupId>
-			<artifactId>cookbookapp</artifactId>
+			<artifactId>cookbookapp-cnn</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 

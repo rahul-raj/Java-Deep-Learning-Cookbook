@@ -51,7 +51,7 @@ public class AnimalClassifier {
         int batchSize=10;
 
         //load files and split
-        File parentDir = new File("C:\\Users\\Admin\\dl4j-examples\\dl4j-examples\\src\\main\\resources\\animals");
+        File parentDir = new File("D:\\dataset");
         FileSplit fileSplit = new FileSplit(parentDir, NativeImageLoader.ALLOWED_FORMATS,new Random(42));
         int numLabels = fileSplit.getRootDir().listFiles(File::isDirectory).length;
 
