@@ -13,18 +13,18 @@ import java.util.logging.Logger;
 
 public class MalmoExample {
     public static QLearning.QLConfiguration MALMO_QL = new QLearning.QLConfiguration(123, //Random seed
-            200, //Max step By epoch
-            100000, //Max step
-            50000, //Max size of experience replay
+            200, //Maximum number of steps allowed per epoch
+            100000, //Training will be finished when count of iterations exceed this value.
+            50000, //Max size of experience replay. (Number of past transitions to be considered to decide the current action)
             32, //size of batches
-            500, //target update (hard)
-            10, //num step noop warmup
+            500, //target update (hard) (Freeze the network/perform smooth average after every N updates. N refers to this value.)
+            10, //num step noop warmup (num of "do-nothing" actions by the agent at the beginning to ensure random configuration while mission starts)
             0.01, //reward scaling
-            0.99, //gamma
-            1.0, //td-error clipping
-            0.1f, //min epsilon
-            10000, //num step for eps greedy anneal
-            true //double DQN
+            0.99, //gamma (also known as 'discount factor' which is used to prevent agent being attracted to rewards rather than learning the actions)
+            1.0, //td-error clipping (clip the gradient of loss function w.r.t output of the activation function during backpropagation)
+            0.1f, //min epsilon (Gradients for activation nodes (during backpropagation) are calculated using epsilon)
+            10000, //num step for eps greedy anneal (Number of steps used to anneal the value of epsilon to 'minEpsilon' value)
+            true //double DQN is enabled or not.
     );
 
     public static DQNFactoryStdConv.Configuration MALMO_NET = new DQNFactoryStdConv.Configuration(
@@ -69,7 +69,9 @@ public class MalmoExample {
         MalmoObservationSpace observationSpace = new MalmoObservationSpacePixels(320, 240);
         MalmoDescretePositionPolicy obsPolicy = new MalmoDescretePositionPolicy();
 
-        MalmoEnv mdp = new MalmoEnv("C:\\Users\\Admin\\Java-Deep-Learning-Cookbook\\09_Using RL4J for Reinforcement learning\\sourceCode\\cookbookapp\\target\\classes\\cliff_walking_rl4j.xml", actionSpace, observationSpace, obsPolicy);
+        //Note: You might get FileNotFoundException for the file 'cliff_walking_rl4j.xml', because the project path contain spaces.
+        //You may copy this file from resources directory, place it on your local and refer the path here.
+        MalmoEnv mdp = new MalmoEnv("cliff_walking_rl4j.xml", actionSpace, observationSpace, obsPolicy);
 
         final Random r = new Random(12345);
 
@@ -81,7 +83,9 @@ public class MalmoExample {
                 count++;
 
                 if (count > 1000) {
-                    MissionSpec mission = MalmoEnv.loadMissionXML("C:\\Users\\Admin\\Java-Deep-Learning-Cookbook\\09_Using RL4J for Reinforcement learning\\sourceCode\\cookbookapp\\target\\classes\\cliff_walking_rl4j.xml");
+                    //Note: You might get FileNotFoundException for the file 'cliff_walking_rl4j.xml', because the project path contain spaces.
+                    //You may copy this file from resources directory, place it on your local and refer the path here.
+                    MissionSpec mission = MalmoEnv.loadMissionXML("cliff_walking_rl4j.xml");
 
                     for (int x = 1; x < 4; ++x)
                         for (int z = 1; z < 13; ++z)
