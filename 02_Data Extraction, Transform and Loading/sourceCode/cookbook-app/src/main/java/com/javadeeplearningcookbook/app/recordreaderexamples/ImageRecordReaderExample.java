@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Random;
 
 public class ImageRecordReaderExample {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
 
         /*
         *  Note:
@@ -27,26 +27,33 @@ public class ImageRecordReaderExample {
         *  This is a simple example to check whether your data is properly extracted from source.
         *
         * */
-        FileSplit fileSplit = new FileSplit(new File("imagenet"),NativeImageLoader.ALLOWED_FORMATS,new Random(123));
-        int numLabels = fileSplit.getRootDir().listFiles(File::isDirectory).length;
+        try {
+            FileSplit fileSplit = new FileSplit(new File("Path/to/image-files"),NativeImageLoader.ALLOWED_FORMATS,new Random(123));
+            int numLabels = fileSplit.getRootDir().listFiles(File::isDirectory).length;
 
-        ParentPathLabelGenerator parentPathLabelGenerator = new ParentPathLabelGenerator();
-        BalancedPathFilter balancedPathFilter = new BalancedPathFilter(
-                                                         new Random(123),
-                                                         NativeImageLoader.ALLOWED_FORMATS,
-                                                         parentPathLabelGenerator
-                                                        );
+            ParentPathLabelGenerator parentPathLabelGenerator = new ParentPathLabelGenerator();
+            BalancedPathFilter balancedPathFilter = new BalancedPathFilter(
+                                                             new Random(123),
+                                                             NativeImageLoader.ALLOWED_FORMATS,
+                                                             parentPathLabelGenerator
+                                                            );
 
-        InputSplit[] inputSplits = fileSplit.sample(balancedPathFilter,85,15);
-        InputSplit trainData = inputSplits[0];
-        //InputSplit testData = inputSplits[1];
+            InputSplit[] inputSplits = fileSplit.sample(balancedPathFilter,85,15);
+            InputSplit trainData = inputSplits[0];
+            //InputSplit testData = inputSplits[1];
 
-        ImageRecordReader imageRecordReader =  new ImageRecordReader(30,30,3,
-                                                         parentPathLabelGenerator
-                                                        );
-        imageRecordReader.initialize(trainData,null);
+            ImageRecordReader imageRecordReader =  new ImageRecordReader(30,30,3,
+                                                             parentPathLabelGenerator
+                                                            );
+            imageRecordReader.initialize(trainData,null);
 
-        DataSetIterator dataSetIterator = new RecordReaderDataSetIterator(imageRecordReader,4,1,numLabels);
-        System.out.println(dataSetIterator.totalOutcomes());
+            DataSetIterator dataSetIterator = new RecordReaderDataSetIterator(imageRecordReader,4,1,numLabels);
+            System.out.println(dataSetIterator.totalOutcomes());
+        } catch(RuntimeException e){
+            System.out.println("Please provide proper image directory path in place of: Path/to/image-files ");
+            System.out.println("For more details, please refer to the instructions listed in comment section");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
