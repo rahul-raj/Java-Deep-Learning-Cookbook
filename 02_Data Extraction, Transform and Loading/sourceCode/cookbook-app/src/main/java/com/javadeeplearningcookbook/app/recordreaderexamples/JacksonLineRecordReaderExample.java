@@ -17,33 +17,40 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class JacksonLineRecordReaderExample {
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args){
 
-        Schema schema = new Schema.Builder()
-                                .addColumnsDouble("sepalLength","sepalWidth","petalLength","petalWidth")
-                                .addColumnCategorical("species", Arrays.asList("setosa","versicolor","virginica"))
-                                .build();
-        TransformProcess transformProcess = new TransformProcess.Builder(schema)
-                                                .categoricalToInteger("species")
-                                                .build();
+        try {
+            Schema schema = new Schema.Builder()
+                                    .addColumnsDouble("sepalLength","sepalWidth","petalLength","petalWidth")
+                                    .addColumnCategorical("species", Arrays.asList("setosa","versicolor","virginica"))
+                                    .build();
+            TransformProcess transformProcess = new TransformProcess.Builder(schema)
+                                                    .categoricalToInteger("species")
+                                                    .build();
 
-        FieldSelection fieldSelection = new FieldSelection.Builder()
-                                  .addField("sepalLength")
-                                  .addField("sepalWidth")
-                                  .addField("petalLength")
-                                  .addField("petalWidth")
-                                  .addField("species")
-                                  .build();
+            FieldSelection fieldSelection = new FieldSelection.Builder()
+                                      .addField("sepalLength")
+                                      .addField("sepalWidth")
+                                      .addField("petalLength")
+                                      .addField("petalWidth")
+                                      .addField("species")
+                                      .build();
 
-        JacksonLineRecordReader jacksonLineRecordReader = new JacksonLineRecordReader(fieldSelection,new ObjectMapper(new JsonFactory()));
-        Configuration configuration = new Configuration();
-        configuration.set(JacksonLineRecordReader.LABELS,"species");
-        jacksonLineRecordReader.initialize(new FileSplit(new File("D:/storage/irisdata.txt")));
-        TransformProcessRecordReader recordReader = new TransformProcessRecordReader(jacksonLineRecordReader,transformProcess);
-        System.out.println(jacksonLineRecordReader.next());
-        DataSetIterator dataSetIterator = new RecordReaderDataSetIterator(recordReader,5,-1,3);
-        System.out.println(dataSetIterator.totalOutcomes());
-
+            JacksonLineRecordReader jacksonLineRecordReader = new JacksonLineRecordReader(fieldSelection,new ObjectMapper(new JsonFactory()));
+            Configuration configuration = new Configuration();
+            configuration.set(JacksonLineRecordReader.LABELS,"species");
+            jacksonLineRecordReader.initialize(new FileSplit(new File("irisdata.txt")));
+            TransformProcessRecordReader recordReader = new TransformProcessRecordReader(jacksonLineRecordReader,transformProcess);
+            System.out.println(jacksonLineRecordReader.next());
+            DataSetIterator dataSetIterator = new RecordReaderDataSetIterator(recordReader,5,-1,3);
+            System.out.println(dataSetIterator.totalOutcomes());
+        } catch(RuntimeException e){
+            System.out.println("Please provide proper file path for the IRIS data in place of: Path/to/Iris-data ");
+        }catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
     }
