@@ -39,7 +39,7 @@ public class JacksonLineRecordReaderExample {
             JacksonLineRecordReader jacksonLineRecordReader = new JacksonLineRecordReader(fieldSelection,new ObjectMapper(new JsonFactory()));
             Configuration configuration = new Configuration();
             configuration.set(JacksonLineRecordReader.LABELS,"species");
-            jacksonLineRecordReader.initialize(new FileSplit(new File("irisdata.txt")));
+            jacksonLineRecordReader.initialize(new FileSplit(new File("Path/to/Iris-data")));
             TransformProcessRecordReader recordReader = new TransformProcessRecordReader(jacksonLineRecordReader,transformProcess);
             System.out.println(jacksonLineRecordReader.next());
             DataSetIterator dataSetIterator = new RecordReaderDataSetIterator(recordReader,5,-1,3);
