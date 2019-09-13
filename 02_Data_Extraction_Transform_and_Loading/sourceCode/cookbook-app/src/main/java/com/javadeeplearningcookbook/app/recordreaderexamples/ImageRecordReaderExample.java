@@ -49,7 +49,7 @@ public class ImageRecordReaderExample {
 
             DataSetIterator dataSetIterator = new RecordReaderDataSetIterator(imageRecordReader,4,1,numLabels);
             System.out.println(dataSetIterator.totalOutcomes());
-        } catch(RuntimeException e){
+        } catch(IllegalArgumentException e){
             System.out.println("Please provide proper image directory path in place of: Path/to/image-files ");
             System.out.println("For more details, please refer to the instructions listed in comment section");
         } catch (IOException e) {

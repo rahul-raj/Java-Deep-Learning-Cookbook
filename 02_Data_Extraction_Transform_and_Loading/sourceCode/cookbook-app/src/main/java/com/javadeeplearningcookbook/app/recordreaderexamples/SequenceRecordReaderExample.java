@@ -47,7 +47,7 @@ public class SequenceRecordReaderExample {
 
             DataSetIterator trainIterator = new SequenceRecordReaderDataSetIterator(featureRecordReader,labelRecordReader,10,2,false, SequenceRecordReaderDataSetIterator.AlignmentMode.ALIGN_END);
             System.out.println(trainIterator.inputColumns());
-        } catch(RuntimeException e){
+        } catch(IllegalArgumentException e){
             System.out.println("Please provide proper file path for the dataset in place of: PATH-TO-FEATURES & PATH-TO-LABELS ");
         }catch (IOException e) {
             e.printStackTrace();

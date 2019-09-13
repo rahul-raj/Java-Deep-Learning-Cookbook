@@ -44,7 +44,7 @@ public class JacksonLineRecordReaderExample {
             System.out.println(jacksonLineRecordReader.next());
             DataSetIterator dataSetIterator = new RecordReaderDataSetIterator(recordReader,5,-1,3);
             System.out.println(dataSetIterator.totalOutcomes());
-        } catch(RuntimeException e){
+        } catch(IllegalArgumentException e){
             System.out.println("Please provide proper file path for the IRIS data in place of: Path/to/Iris-data ");
         }catch (IOException e) {
             e.printStackTrace();

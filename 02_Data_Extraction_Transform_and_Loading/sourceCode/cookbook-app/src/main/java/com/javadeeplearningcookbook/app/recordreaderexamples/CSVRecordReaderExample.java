@@ -52,7 +52,7 @@ public class CSVRecordReaderExample
                                                   .classification(0,numClasses)
                                                   .build();
             System.out.println("Total number of possible labels = [" + dataSetIterator.totalOutcomes()+ "]");
-        } catch(RuntimeException e){
+        } catch(IllegalArgumentException e){
             System.out.println("Please provide proper file path for titanic.csv fle in place of: Path/to/titanic.csv-file");
         }catch (IOException e) {
             e.printStackTrace();

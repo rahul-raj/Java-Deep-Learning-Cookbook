@@ -27,7 +27,7 @@ public class CodecReaderExample {
             codecRecordReader.setConf(conf);
             List<List<Writable>> list =  codecRecordReader.sequenceRecord();
             list.listIterator().forEachRemaining(el->System.out.println(el.size()));
-        } catch(RuntimeException e) {
+        } catch(IllegalArgumentException e) {
             System.out.println("Please provide proper video file path in place of: /Path/to/video-file ");
         } catch (IOException e) {
             e.printStackTrace();

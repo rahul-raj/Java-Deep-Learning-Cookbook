@@ -18,7 +18,7 @@ public class RegexSequenceRecordReaderExample {
             recordReader.initialize(fileSplit);
             //There are 10 sequences of files.  We are printing one of the sample sequence here
             System.out.println(recordReader.next().get(0).toString());
-        } catch(RuntimeException e){
+        } catch(IllegalArgumentException e){
             System.out.println("Please provide proper directory path to logdata in place of: Path/to/logdata");
         } catch (IOException e) {
             e.printStackTrace();
