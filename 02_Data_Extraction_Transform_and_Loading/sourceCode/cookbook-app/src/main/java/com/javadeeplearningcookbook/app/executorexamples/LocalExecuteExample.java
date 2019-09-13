@@ -55,7 +55,7 @@ public class LocalExecuteExample {
             List<List<Writable>> transformedOutput=LocalTransformExecutor.execute(outputData,transformProcess);
             recordWriter.writeBatch(transformedOutput);
             recordWriter.close();
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("Please provide proper file path for titanic.csv fle in place of: Path/to/titanic.csv-file");
         }
     }
