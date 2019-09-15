@@ -6,7 +6,6 @@ import org.datavec.api.records.reader.impl.transform.TransformProcessRecordReade
 import org.datavec.api.split.FileSplit;
 import org.datavec.api.transform.TransformProcess;
 import org.datavec.api.transform.schema.Schema;
-import org.datavec.api.util.ndarray.RecordConverter;
 import org.deeplearning4j.api.storage.StatsStorage;
 import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
 import org.deeplearning4j.datasets.iterator.DataSetIteratorSplitter;
@@ -79,16 +78,6 @@ public class CustomerRetentionPredictionExample {
         return transformProcessRecordReader;
     }
 
-    private static INDArray generateOutput(File file) throws IOException, InterruptedException {
-        final File modelFile = new File("model.zip");
-        final MultiLayerNetwork network = ModelSerializer.restoreMultiLayerNetwork(modelFile);
-        final RecordReader recordReader = generateReader(file);
-        final INDArray array = RecordConverter.toArray(recordReader.next());
-        final NormalizerStandardize normalizerStandardize = ModelSerializer.restoreNormalizerFromFile(modelFile);
-        normalizerStandardize.transform(array);
-        return network.output(array,false);
-
-    }
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
@@ -135,7 +124,6 @@ public class CustomerRetentionPredictionExample {
         ModelSerializer.writeModel(multiLayerNetwork,file,true);
         ModelSerializer.addNormalizerToModel(file,dataNormalization);
 
-        //INDArray output = generateOutput(new File("test.csv"));
 
     }
 }
