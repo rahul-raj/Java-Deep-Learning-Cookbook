@@ -14,11 +14,11 @@ import java.util.List;
 public class CookBookServiceImpl implements CookBookService {
 
     @Override
-    public List<String> generateStringOutput(MultipartFile multipartFile) throws IOException, InterruptedException {
+    public List<String> generateStringOutput(MultipartFile multipartFile, String modelFilePah) throws IOException, InterruptedException {
         final List<String> results = new ArrayList<>();
         File convFile = File.createTempFile(multipartFile.getOriginalFilename(),null, new File(System.getProperty("user.dir")+"/"));
         multipartFile.transferTo(convFile);
-        INDArray indArray = CustomerRetentionPredictionApi.generateOutput(convFile);
+        INDArray indArray = CustomerRetentionPredictionApi.generateOutput(convFile, modelFilePah);
         for(int i=0; i<indArray.rows();i++){
             if(indArray.getDouble(i,0)>indArray.getDouble(i,1)){
                 results.add("Customer "+(i+1)+"-> Happy Customer \n");

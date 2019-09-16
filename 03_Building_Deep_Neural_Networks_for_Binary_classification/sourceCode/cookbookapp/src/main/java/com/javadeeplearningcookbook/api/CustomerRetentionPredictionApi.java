@@ -60,10 +60,10 @@ public class CustomerRetentionPredictionApi {
         return transformProcessRecordReader;
     }
 
-    public static INDArray generateOutput(File file) throws IOException, InterruptedException {
-        final File modelFile = new File("model.zip");
+    public static INDArray generateOutput(File inputFile, String modelFilePath) throws IOException, InterruptedException {
+        final File modelFile = new File(modelFilePath);
         final MultiLayerNetwork network = ModelSerializer.restoreMultiLayerNetwork(modelFile);
-        final RecordReader recordReader = generateReader(file);
+        final RecordReader recordReader = generateReader(inputFile);
         //final INDArray array = RecordConverter.toArray(recordReader.next());
         final NormalizerStandardize normalizerStandardize = ModelSerializer.restoreNormalizerFromFile(modelFile);
         //normalizerStandardize.transform(array);
@@ -76,7 +76,7 @@ public class CustomerRetentionPredictionApi {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         
-        INDArray indArray = CustomerRetentionPredictionApi.generateOutput(new ClassPathResource("test.csv").getFile());
+        INDArray indArray = CustomerRetentionPredictionApi.generateOutput(new ClassPathResource("test.csv").getFile(),"model.zip");
         String message="";
         for(int i=0; i<indArray.rows();i++){
            if(indArray.getDouble(i,0)>indArray.getDouble(i,1)){

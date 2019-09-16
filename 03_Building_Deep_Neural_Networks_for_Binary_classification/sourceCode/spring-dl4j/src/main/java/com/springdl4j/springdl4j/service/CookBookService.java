@@ -7,5 +7,5 @@ import java.util.List;
 
 
 public interface CookBookService {
-    List<String> generateStringOutput(MultipartFile multipartFile) throws IOException, InterruptedException;
+    List<String> generateStringOutput(MultipartFile multipartFile, String modelFilePath) throws IOException, InterruptedException;
 }
