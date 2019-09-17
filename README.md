@@ -8,6 +8,7 @@
 This is a code repository for the upcoming book "Java Deep Learning cookbook" sponsored by Packt Publishing. We use and promote **deeplearning4j** library for all use-cases in this book. 
 
 **Update**
+
 ETA for the cookbook release is extended to October 2019
 Chapter-wise readme sections will be updated accordingly. 
 
