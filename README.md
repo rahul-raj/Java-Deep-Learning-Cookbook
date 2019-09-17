@@ -9,7 +9,7 @@ This is a code repository for the upcoming book "Java Deep Learning cookbook" sp
 
 **Update**
 
-ETA for the cookbook release is extended to October 2019
+ETA for the cookbook release is extended to October 2019.
 Chapter-wise readme sections will be updated accordingly. 
 
 # Build
