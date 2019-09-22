@@ -15,7 +15,7 @@ import java.io.File;
  */
 public class PreProcessLocal {
     //The directory in which you would like to save your batches.
-    private String localSaveDir = "D:/Application/imagenet-preprocessed/";
+    private String localSaveDir = "{PATH-TO-SAVE-PREPROCESSED-DATASET}";
 
     @Parameter(names = {"--batchSize"}, description = "Batch size for saving the data", required = false)
     private int batchSize = 32;
@@ -26,6 +26,11 @@ public class PreProcessLocal {
 
     protected void entryPoint(String[] args) throws Exception {
 
+        if(localSaveDir.equals("{PATH-TO-SAVE-PREPROCESSED-DATASET}")){
+            System.out.println("Please specify the directory in which pre-processed dataset needs to be stored");
+            System.exit(0);
+        }
+        
         TinyImageNetFetcher f = new TinyImageNetFetcher();
         f.downloadAndExtract();
 
