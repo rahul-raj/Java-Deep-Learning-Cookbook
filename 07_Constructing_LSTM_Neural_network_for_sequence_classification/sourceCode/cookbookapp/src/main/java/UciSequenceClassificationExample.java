@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.Random;
 
 public class UciSequenceClassificationExample {
-
+    //Download dataset -> https://archive.ics.uci.edu/ml/machine-learning-databases/synthetic_control-mld/synthetic_control.data
     //Replace with your file system location where you want to store feature/labels from data after extraction.
     static String trainfeatureDir = "{PATH-TO-TRAIN-FEATURES}"; //eg: C:/train/features/
     static String trainlabelDir = "{PATH-TO-TRAIN-LABELS}"; //eg: C:/train/labels/
