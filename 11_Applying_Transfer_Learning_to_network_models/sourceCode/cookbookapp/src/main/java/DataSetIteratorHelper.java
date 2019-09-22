@@ -78,12 +78,12 @@ public class DataSetIteratorHelper {
     }
 
     public static DataSetIterator trainIteratorFeaturized(){
-        DataSetIterator trainIter = new ExistingMiniBatchDataSetIterator(new File("D:/cookbook/ch11/train"),"churn-"+featurizeExtractionLayer+"-train-%d.bin");
+        DataSetIterator trainIter = new ExistingMiniBatchDataSetIterator(new File("{PATH-TO-SAVE-TRAIN-SAMPLES}"),"churn-"+featurizeExtractionLayer+"-train-%d.bin");
         return new AsyncDataSetIterator(trainIter);
 
     }
     public static DataSetIterator testIteratorFeaturized(){
-        DataSetIterator testIter = new ExistingMiniBatchDataSetIterator(new File("D:/cookbook/ch11/test"),"churn-"+featurizeExtractionLayer+"-test-%d.bin");
+        DataSetIterator testIter = new ExistingMiniBatchDataSetIterator(new File("{PATH-TO-SAVE-TEST-SAMPLES}"),"churn-"+featurizeExtractionLayer+"-test-%d.bin");
         return new AsyncDataSetIterator(testIter);
     }
 }

@@ -12,6 +12,7 @@ import org.nd4j.linalg.learning.config.Nesterovs;
 import org.slf4j.Logger;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class SaveFeaturizedDataExample {
@@ -20,46 +21,54 @@ public class SaveFeaturizedDataExample {
     private static final long seed = 12345;
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        File savedLocation = new File("model.zip");      //Where to save the network. Note: the file is in .zip format - can be opened externally
+        //Use the model file saved from chapter 3 example.
+        File savedLocation = new File("{PATH-TO-MODEL-FILE}");      //Where to save the network. Note: the file is in .zip format - can be opened externally
         boolean saveUpdater = true;
-        MultiLayerNetwork oldModel = MultiLayerNetwork.load(savedLocation, saveUpdater);
 
-        FineTuneConfiguration fineTuneConf = new FineTuneConfiguration.Builder()
-                .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
-                .updater(new Nesterovs(5e-5))
-                .biasInit(0.001)
-                .gradientNormalization(GradientNormalization.RenormalizeL2PerLayer)
-                .l2(0.0001)
-                .weightInit(WeightInit.DISTRIBUTION)
-                .seed(seed)
-                .build();
+        try{
+            MultiLayerNetwork oldModel = MultiLayerNetwork.load(savedLocation, saveUpdater);
 
-        MultiLayerNetwork newModel = new TransferLearning.Builder(oldModel)
-                .fineTuneConfiguration(fineTuneConf)
-                .setFeatureExtractor(featurizeExtractionLayer)
-                .build();
+            FineTuneConfiguration fineTuneConf = new FineTuneConfiguration.Builder()
+                    .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
+                    .updater(new Nesterovs(5e-5))
+                    .biasInit(0.001)
+                    .gradientNormalization(GradientNormalization.RenormalizeL2PerLayer)
+                    .l2(0.0001)
+                    .weightInit(WeightInit.DISTRIBUTION)
+                    .seed(seed)
+                    .build();
 
-        TransferLearningHelper transferLearningHelper = new TransferLearningHelper(oldModel);
-        DataSetIterator trainIter = DataSetIteratorHelper.trainIterator();
-        DataSetIterator testIter = DataSetIteratorHelper.testIterator();
+            MultiLayerNetwork newModel = new TransferLearning.Builder(oldModel)
+                    .fineTuneConfiguration(fineTuneConf)
+                    .setFeatureExtractor(featurizeExtractionLayer)
+                    .build();
 
-        int trainDataSaved = 0;
-        while(trainIter.hasNext()) {
-            DataSet currentFeaturized = transferLearningHelper.featurize(trainIter.next());
-            saveToDisk(currentFeaturized,trainDataSaved,true);
-            trainDataSaved++;
+            TransferLearningHelper transferLearningHelper = new TransferLearningHelper(oldModel);
+            DataSetIterator trainIter = DataSetIteratorHelper.trainIterator();
+            DataSetIterator testIter = DataSetIteratorHelper.testIterator();
+
+            int trainDataSaved = 0;
+            while(trainIter.hasNext()) {
+                DataSet currentFeaturized = transferLearningHelper.featurize(trainIter.next());
+                saveToDisk(currentFeaturized,trainDataSaved,true);
+                trainDataSaved++;
+            }
+
+            int testDataSaved = 0;
+            while(testIter.hasNext()) {
+                DataSet currentFeaturized = transferLearningHelper.featurize(testIter.next());
+                saveToDisk(currentFeaturized,testDataSaved,false);
+                testDataSaved++;
+            }
         }
+        catch(FileNotFoundException e){
+            System.out.println("Please provide file path in place of: PATH-TO-MODEL-FILE, PATH-TO-SAVE-TRAIN-SAMPLES & PATH-TO-SAVE-TEST-SAMPLES");
 
-        int testDataSaved = 0;
-        while(testIter.hasNext()) {
-            DataSet currentFeaturized = transferLearningHelper.featurize(testIter.next());
-            saveToDisk(currentFeaturized,testDataSaved,false);
-            testDataSaved++;
         }
     }
 
-    private static void saveToDisk(DataSet currentFeaturized, int iterNum, boolean isTrain) {
-        File fileFolder = isTrain ? new File("D:/cookbook/ch11/train"): new File("D:/cookbook/ch11/test");
+    private static void saveToDisk(DataSet currentFeaturized, int iterNum, boolean isTrain){
+        File fileFolder = isTrain ? new File("{PATH-TO-SAVE-TRAIN-SAMPLES}"): new File("{PATH-TO-SAVE-TEST-SAMPLES}");
         if (iterNum == 0) {
             fileFolder.mkdirs();
         }
