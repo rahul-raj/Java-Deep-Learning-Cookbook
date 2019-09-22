@@ -30,6 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
@@ -40,10 +41,17 @@ public class CnnWord2VecSentenceClassificationExample {
      * Download IMDB reviews dataset: http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz
      * Download Google news vectors: https://deeplearning4jblob.blob.core.windows.net/resources/wordvectors/GoogleNews-vectors-negative300.bin.gz
      */
-    public static final String DATA_PATH = "C:\\Users\\Admin\\Downloads\\aclImdb_v1";
-    public static final String WORD_VECTORS_PATH = "C:\\Users\\Admin\\Downloads\\GoogleNews-vectors-negative300.bin.gz";
+    public static final String DATA_PATH = "{PATH-TO-IMDB-REVIEW-DATASET}";
+    public static final String WORD_VECTORS_PATH = "{PATH-TO-GOOGLE-WORD-VECTOR}";
 
     public static void main(String[] args) throws IOException {
+
+        if (WORD_VECTORS_PATH.equals("{PATH-TO-GOOGLE-WORD-VECTOR}")
+                || DATA_PATH.equals("{PATH-TO-IMDB-REVIEW-DATASET}")){
+            System.out.println("Please provide proper directory path in place of: PATH-TO-IMDB-REVIEW-DATASET && PATH-TO-GOOGLE-WORD-VECTOR");
+            throw new FileNotFoundException();
+
+        }
         //Basic configuration
         int batchSize = 32;
         int vectorSize = 300;               //Size of the word vectors. 300 in the Google News model
