@@ -18,14 +18,19 @@ import org.nd4j.linalg.dataset.api.preprocessor.NormalizerStandardize;
 import org.nd4j.linalg.learning.config.Adam;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 //Download dataset from https://skymindacademy.blob.core.windows.net/physionet2012/physionet2012.tar.gz
 public class LstmTimeSeriesExample {
-    private static final String FEATURE_DIR = "C:\\Users\\Admin\\Downloads\\physionet2012\\physionet2012\\sequence";
-    private static final String LABEL_DIR = "C:\\Users\\Admin\\Downloads\\physionet2012\\physionet2012\\mortality";
+    private static final String FEATURE_DIR = "{PATH-TO-PHYSIONET-FEATURES}";
+    private static final String LABEL_DIR = "{PATH-TO-PHYSIONET-LABELS";
     private static final int RANDOM_SEED = 1234;
     public static void main(String[] args) throws IOException, InterruptedException {
+        if(FEATURE_DIR.equals("{PATH-TO-PHYSIONET-FEATURES}") || LABEL_DIR.equals("{PATH-TO-PHYSIONET-LABELS")){
+            System.out.println("Please provide proper directory path in place of: PATH-TO-PHYSIONET-FEATURES && PATH-TO-PHYSIONET-LABELS");
+            throw new FileNotFoundException();
+        }
         SequenceRecordReader trainFeaturesReader = new CSVSequenceRecordReader(1, ",");
         trainFeaturesReader.initialize(new NumberedFileInputSplit(FEATURE_DIR+"/%d.csv",0,3199));
         SequenceRecordReader trainLabelsReader = new CSVSequenceRecordReader();
