@@ -47,7 +47,7 @@ public class LocalExecuteExample {
 
             RecordWriter recordWriter = new CSVRecordWriter();
             Partitioner partitioner = new NumberOfRecordsPartitioner();
-            recordWriter.initialize(new FileSplit(new File("LocalExecuteExample.csv")),partitioner);
+            recordWriter.initialize(new FileSplit(new File("/Path/To/LocalExecuteExample.csv/file")),partitioner);
 
             while(recordReader.hasNext()){
                 outputData.add(recordReader.next());
@@ -56,7 +56,8 @@ public class LocalExecuteExample {
             recordWriter.writeBatch(transformedOutput);
             recordWriter.close();
         } catch (IllegalArgumentException e) {
-            System.out.println("Please provide proper file path for titanic.csv fle in place of: Path/to/titanic.csv-file");
+            System.out.println("Please provide proper file paths for titanic.csv & fle in place of: Path/to/titanic.csv-file && /Path/To/LocalExecuteExample.csv");
+            System.out.println("You need to create an empty CSV file and mention the file path in place of /Path/To/LocalExecuteExample.csv");
         }
     }
 }
