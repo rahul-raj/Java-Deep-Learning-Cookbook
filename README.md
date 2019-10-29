@@ -39,16 +39,16 @@ Delete ***workspace.xml*** under ***.idea*** directory if problem persists.
 # Table of Contents
 
 
- 1. [Introduction to Deep Learning in Java](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook#chapter-1--introduction-to-deep-learning-in-java)
- 2. [Data Extraction, Transform and Loading](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook#chapter-2--data-extraction-transform-and-loading)
- 3. [Building Deep Neural Networks for Binary classification](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook#chapter-3--building-deep-neural-networks-for-binary-classification)
- 4. [Building Convolutional Neural Networks](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook#chapter-4--building-convolutional-neural-networks)
- 5. [Implementing NLP](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook#chapter-5--implementing-nlp)
- 6. [Constructing LTSM Network for time series](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook#chapter-6--constructing-lstm-network-for-time-series)
- 7. [Constructing LTSM Neural network for sequence classification](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook#chapter-7--constructing-lstm-neural-network-for-sequence-classification)
- 8. [Performing Anomaly detection on unsupervised data](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook#chapter-8--performing-anomaly-detection-on-unsupervised-data)
- 9. [Using RL4J for Reinforcement learning](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook#chapter-9--using-rl4j-for-reinforcement-learning)
- 10. [Developing applications in distributed environment](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook#chapter-10--developing-applications-in-distributed-environment)
- 11. [Applying Transfer Learning to network models](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook#chapter-11--applying-transfer-learning-to-network-models)
- 12. [Benchmarking and Neural Network Optimization](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook#chapter-12--benchmarking-and-neural-network-optimization-in-dl4j)
+ 1. [Introduction to Deep Learning in Java](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/01_Introduction_to_Deep_Learning_in_Java)
+ 2. [Data Extraction, Transform and Loading](hhttps://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/02_Data_Extraction_Transform_and_Loading)
+ 3. [Building Deep Neural Networks for Binary classification](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/03_Building_Deep_Neural_Networks_for_Binary_classification)
+ 4. [Building Convolutional Neural Networks](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/04_Building_Convolutional_Neural_Networks)
+ 5. [Implementing NLP](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/05_Implementing_NLP)
+ 6. [Constructing LTSM Network for time series](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/06_Constructing_LSTM_Network_for_time_series)
+ 7. [Constructing LTSM Neural network for sequence classification](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/07_Constructing_LSTM_Neural_network_for_sequence_classification)
+ 8. [Performing Anomaly detection on unsupervised data](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/08_Performing_Anomaly_detection_on_unsupervised_data)
+ 9. [Using RL4J for Reinforcement learning](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/09_Using_RL4J_for_Reinforcement_learning)
+ 10. [Developing applications in distributed environment](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/10_Developing_applications_in_distributed_environment)
+ 11. [Applying Transfer Learning to network models](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/11_Applying_Transfer_Learning_to_network_models)
+ 12. [Benchmarking and Neural Network Optimization](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/12_Benchmarking_and_Neural_Network_Optimization)
 
