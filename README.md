@@ -40,7 +40,7 @@ Delete ***workspace.xml*** under ***.idea*** directory if problem persists.
 
 
  1. [Introduction to Deep Learning in Java](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/01_Introduction_to_Deep_Learning_in_Java)
- 2. [Data Extraction, Transform and Loading](hhttps://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/02_Data_Extraction_Transform_and_Loading)
+ 2. [Data Extraction, Transform and Loading](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/02_Data_Extraction_Transform_and_Loading)
  3. [Building Deep Neural Networks for Binary classification](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/03_Building_Deep_Neural_Networks_for_Binary_classification)
  4. [Building Convolutional Neural Networks](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/04_Building_Convolutional_Neural_Networks)
  5. [Implementing NLP](https://github.com/rahul-raj/Java-Deep-Learning-Cookbook/tree/master/05_Implementing_NLP)
