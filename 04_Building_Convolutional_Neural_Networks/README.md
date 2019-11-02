@@ -2,9 +2,11 @@
 ### Chapter 4 : Building Convolutional Neural Networks
 
 In this chapter, you will be creating a convolutional neural network to perform basic imagenet classification.
+
 &nbsp;
 &nbsp;
 &nbsp;
+
 #### Instructions 
 Navigate to **sourceCode** directory and you will see two directories:
 
