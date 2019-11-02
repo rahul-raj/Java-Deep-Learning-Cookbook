@@ -6,11 +6,12 @@
 # Java Deep Learning Cookbook
 
 This is a code repository for the upcoming book "Java Deep Learning cookbook" sponsored by Packt Publishing. We use and promote **deeplearning4j** library for all use-cases in this book. 
+Official **deeplearning4j** version targeted in this cookbook is **1.0.0-beta3**. For the same reason, some of the methods or approaches may deprecated in their newer versions. So, be sure to refer their latest API documentation. You may use newer versions that has bug fixes and new features. 
 
 **Update**
 
-ETA for the cookbook release is extended to October 2019.
-Chapter-wise readme sections will be updated accordingly. 
+ETA for the cookbook release is  November 8, 2019.
+
 
 # Build
 
