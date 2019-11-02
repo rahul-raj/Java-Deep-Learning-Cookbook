@@ -1,6 +1,9 @@
 
 ### Chapter 2 : Data Extraction, Transform and Loading
 
+
+
+
 #### Instructions
 
 Navigate to **sourceCode/cookbook-app** directory and import **pom.xml**
