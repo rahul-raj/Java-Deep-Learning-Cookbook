@@ -1,8 +1,8 @@
 
 ### Chapter 2 : Data Extraction, Transform and Loading
-
-
-
+&nbsp;
+&nbsp;
+&nbsp;
 
 #### Instructions
 
