@@ -1,5 +1,5 @@
 
-### Chapter 7 : **Performing Anomaly detection on unsupervised_data**
+### Chapter 8 : **Performing Anomaly detection on unsupervised_data**
 
 In this chapter, you will learn how to develop an unsupervised anomaly detection application using DL4J.
 &nbsp;
