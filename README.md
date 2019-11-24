@@ -10,7 +10,7 @@ Official **deeplearning4j** version targeted in this cookbook is **1.0.0-beta3**
 
 **Update**
 
-ETA for the cookbook release is  November 8, 2019.
+Java deep learning cookbook is released on  November 8, 2019.
 
 
 # Build
